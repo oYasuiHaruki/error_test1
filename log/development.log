@@ -22565,3 +22565,17 @@ ActionController::RoutingError (No route matches [GET] "/assets/font_1_honokamin
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (118.4ms)
+
+
+Started GET "/" for ::1 at 2017-04-16 19:30:30 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1)
+  Rendered tweets/_tweet.html.erb (2.0ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `tweets`[0m
+  Rendered tweets/index.html.erb within layouts/application (31.9ms)
+Completed 200 OK in 89ms (Views: 88.1ms | ActiveRecord: 0.7ms)
