@@ -133,6 +133,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    rb-readline (0.5.4)
     rdoc (4.2.0)
       json (~> 1.4)
     responders (2.1.0)
@@ -205,6 +206,7 @@ DEPENDENCIES
   mysql2
   pry-rails
   rails (= 4.2.1)
+  rb-readline
   rspec-rails (~> 3.1.0)
   sass-rails (~> 4.0.2)
   sdoc (~> 0.4.0)

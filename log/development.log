@@ -22230,3 +22230,338 @@ ActionController::RoutingError (No route matches [GET] "/assets/font_1_honokamin
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
   Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (121.5ms)
+  [1m[36m (47.6ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (22.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateTweets (20150504062522)
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/haruki/projects/error_tset1/db/migrate/20150504062522_create_tweets.rb:7)
+  [1m[35m (27.9ms)[0m  CREATE TABLE `tweets` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `text` text, `image` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150504062522')
+  [1m[36m (6.4ms)[0m  [1mCOMMIT[0m
+Migrating to DeviseCreateUsers (20150505094522)
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/haruki/projects/error_tset1/db/migrate/20150505094522_devise_create_users.rb:34)
+  [1m[35m (19.9ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int(11) DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (12.7ms)[0m  [1mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (13.5ms)[0m  CREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) 
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150505094522')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddNicknameToUsers (20150506061323)
+  [1m[35m (36.2ms)[0m  ALTER TABLE `users` ADD `nickname` varchar(255)
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150506061323')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to AddUserIdToTweets (20150506063152)
+  [1m[35m (34.3ms)[0m  ALTER TABLE `tweets` ADD `user_id` int(11)
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150506063152')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveNameFromTweets (20150506073015)
+  [1m[35m (34.8ms)[0m  ALTER TABLE `tweets` DROP `name`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150506073015')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Migrating to CreateComments (20160407063533)
+DEPRECATION WARNING: `#timestamp` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/haruki/projects/error_tset1/db/migrate/20160407063533_create_comments.rb:7)
+  [1m[35m (29.6ms)[0m  CREATE TABLE `comments` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `tweet_id` int(11), `text` text, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20160407063533')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'error1_development'
+  AND fk.table_name = 'comments'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `comments`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'error1_development'
+  AND fk.table_name = 'tweets'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `tweets`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'error1_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.2ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mUser Exists (0.3ms)[0m  [1mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'karimen@karimen.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`id`, `email`, `encrypted_password`, `nickname`, `created_at`, `updated_at`) VALUES (1, 'karimen@karimen.com', '$2a$10$am4vMm9mdYCMbpNN5vOTuuidSzrtxq81mFhh3N6HSD5n1ebaJH7gW', '仮メン太郎', '2017-04-16 10:01:33', '2017-04-16 10:01:33')
+  [1m[36m (6.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('ぴぃ', 'http://ailovei.com/wp-content/uploads/2014/09/可愛い動物6.jpg', '2015-12-18 07:22:14', '2015-12-18 07:22:14', 1)[0m
+  [1m[35m (6.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('コン', 'http://image.photohito.k-img.com/uploads/photo49/user48957/b/8/b8c27cd074f0368f1f9fa913f1fde281/b8c27cd074f0368f1f9fa913f1fde281_l.jpg', '2015-12-18 07:24:39', '2015-12-18 07:22:14', 2)
+  [1m[36m (10.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('わん！', 'http://27.media.tumblr.com/tumblr_lcdm89C4t41qzo8cho1_500.jpg', '2015-12-18 07:30:49', '2015-12-18 07:30:49', 3)[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('にゃー', 'https://pbs.twimg.com/profile_images/480899741165682688/kNT_WDF7_400x400.jpeg', '2015-12-18 07:31:30', '2015-12-18 07:31:30', 4)
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('ぴょん！', 'http://petasoku.info/images/20110216_2/3.jpg', '2015-12-18 07:32:11', '2015-12-18 07:32:11', 5)[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `tweets` (`text`, `image`, `created_at`, `updated_at`, `user_id`) VALUES ('にゃあ', 'http://pic.prepics-cdn.com/nekocute/18171307.jpeg', '2015-12-18 07:32:40', '2015-12-18 07:32:40', 6)
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for ::1 at 2017-04-16 19:02:25 +0900
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by TweetsController#index as HTML
+  [1m[35mTweet Load (0.3ms)[0m  SELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` IN (6, 5, 4, 3, 2)[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  Rendered tweets/_tweet.html.erb (15.8ms)
+  Rendered tweets/index.html.erb within layouts/application (36.9ms)
+Completed 500 Internal Server Error in 66ms (ActiveRecord: 1.9ms)
+
+ActionView::Template::Error (undefined method `nickname' for nil:NilClass):
+    18:   <%= simple_format(tweet.text) %>
+    19:   <span class="name">
+    20:     <a href="/users/<%= tweet.user_id %>">
+    21:       <span>投稿者</span><%= tweet.user.nickname %>
+    22:     </a>
+    23:   </span>
+    24: </div>
+  app/views/tweets/_tweet.html.erb:21:in `_app_views_tweets__tweet_html_erb__2209418097831760955_70132972668580'
+  app/views/tweets/index.html.erb:3:in `block in _app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+  app/views/tweets/index.html.erb:2:in `_app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+
+
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.5ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.1ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (66.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (66.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (163.7ms)
+
+
+Started GET "/" for ::1 at 2017-04-16 19:02:25 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.4ms)[0m  [1mSELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (6, 5, 4, 3, 2)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered tweets/_tweet.html.erb (4.8ms)
+  Rendered tweets/index.html.erb within layouts/application (8.2ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.9ms)
+
+ActionView::Template::Error (undefined method `nickname' for nil:NilClass):
+    18:   <%= simple_format(tweet.text) %>
+    19:   <span class="name">
+    20:     <a href="/users/<%= tweet.user_id %>">
+    21:       <span>投稿者</span><%= tweet.user.nickname %>
+    22:     </a>
+    23:   </span>
+    24: </div>
+  app/views/tweets/_tweet.html.erb:21:in `_app_views_tweets__tweet_html_erb__2209418097831760955_70132972668580'
+  app/views/tweets/index.html.erb:3:in `block in _app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+  app/views/tweets/index.html.erb:2:in `_app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+
+
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.8ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (62.8ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.7ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (60.7ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (132.5ms)
+
+
+Started GET "/" for ::1 at 2017-04-16 19:22:53 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mTweet Load (0.4ms)[0m  SELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` IN (6, 5, 4, 3, 2)[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1
+  Rendered tweets/_tweet.html.erb (4.5ms)
+  Rendered tweets/index.html.erb within layouts/application (7.6ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.7ms)
+
+ActionView::Template::Error (undefined method `nickname' for nil:NilClass):
+    18:   <%= simple_format(tweet.text) %>
+    19:   <span class="name">
+    20:     <a href="/users/<%= tweet.user_id %>">
+    21:       <span>投稿者</span><%= tweet.user.nickname %>
+    22:     </a>
+    23:   </span>
+    24: </div>
+  app/views/tweets/_tweet.html.erb:21:in `_app_views_tweets__tweet_html_erb__2209418097831760955_70132972668580'
+  app/views/tweets/index.html.erb:3:in `block in _app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+  app/views/tweets/index.html.erb:2:in `_app_views_tweets_index_html_erb___4512215335583820090_70132980004020'
+
+
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (7.7ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (66.1ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (47.9ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (107.3ms)
+
+
+Started GET "/" for ::1 at 2017-04-16 19:23:25 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.3ms)[0m  [1mSELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1)
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered tweets/_tweet.html.erb (2.4ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[35m (0.3ms)[0m  SELECT COUNT(*) FROM `tweets`
+  Rendered tweets/index.html.erb within layouts/application (57.1ms)
+Completed 200 OK in 168ms (Views: 165.9ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/assets/font_1_honokamin.ttf" for ::1 at 2017-04-16 19:23:25 +0900
+
+ActionController::RoutingError (No route matches [GET] "/assets/font_1_honokamin.ttf"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (2.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (9.8ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (103.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.6ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (117.0ms)
+
+
+Started GET "/" for ::1 at 2017-04-16 19:23:59 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.5ms)[0m  [1mSELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE `users`.`id` IN (1)
+  Rendered tweets/_tweet.html.erb (1.2ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  Rendered tweets/_tweet.html.erb (0.6ms)
+  [1m[36m (0.2ms)[0m  [1mSELECT COUNT(*) FROM `tweets`[0m
+  Rendered tweets/index.html.erb within layouts/application (31.2ms)
+Completed 200 OK in 81ms (Views: 78.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/application-f199a32f3ecf02d0a031c1d153c74580.css?body=1" for ::1 at 2017-04-16 19:23:59 +0900
+
+
+Started GET "/" for ::1 at 2017-04-16 19:24:41 +0900
+Processing by TweetsController#index as HTML
+  [1m[35mTweet Load (0.3ms)[0m  SELECT  `tweets`.* FROM `tweets`  ORDER BY created_at DESC LIMIT 5 OFFSET 0
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT `users`.* FROM `users` WHERE `users`.`id` IN (1)[0m
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.8ms)
+  Rendered tweets/_tweet.html.erb (0.9ms)
+  Rendered tweets/_tweet.html.erb (1.0ms)
+  Rendered tweets/_tweet.html.erb (0.7ms)
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM `tweets`
+  Rendered tweets/index.html.erb within layouts/application (32.2ms)
+Completed 200 OK in 103ms (Views: 100.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/assets/font_1_honokamin.ttf" for ::1 at 2017-04-16 19:24:41 +0900
+
+ActionController::RoutingError (No route matches [GET] "/assets/font_1_honokamin.ttf"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.1.2) lib/web_console/middleware.rb:37:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.0) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.0) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  rack (1.6.0) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.0) lib/rack/lock.rb:17:in `call'
+  rack (1.6.0) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.0) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:140:in `service'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/httpserver.rb:96:in `run'
+  /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/2.3.0/webrick/server.rb:296:in `block in start_thread'
+
+
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.9ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (93.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/console.js.erb within layouts/javascript (52.2ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/haruki/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.1.2/lib/web_console/templates/index.html.erb (118.4ms)
