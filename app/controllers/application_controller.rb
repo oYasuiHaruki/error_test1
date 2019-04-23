@@ -1,3 +1,4 @@
+//01D6DEW1745FE5W5XP2DZHM6HX
 class ApplicationController < ActionController::Base
  # Prevent CSRF attacks by raising an exception.
  # For APIs, you may want to use :null_session instead.
